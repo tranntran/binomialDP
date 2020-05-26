@@ -1,0 +1,26 @@
+Package: binomialDP
+Title: Differentially Private Inference for Binomial Data
+Version: 1.0.0
+Authors@R: 
+    person(given = "Jordan",
+           family = "Awan",
+           role = c("aut", "cre"),
+           email = "jordan.a.awan@gmail.com", 
+           comment = c(GoogleScholar = "https://scholar.google.com/citations?user=fhCtCW8AAAAJ&hl=en"))
+    person(given = "Aleksandra",
+           family = "Slavkovic",
+           role = c("aut", "cre"),
+           email = "sesa@psu.edu",
+           comment = c(GoogleScholar = "https://scholar.google.com/citations?user=plbHxNUAAAAJ&hl=en"))
+    person(given = "Tran",
+           family = "Tran",
+           role = c("cre"),
+           email = "ttran2401@gmail.com")
+Description: binomialDP package aids the process of analyzing differentially private data 
+    by offering a tool to perform statistical inference on differentially 
+    private binomial data. This package includes functions for the Tulap 
+    distributions, deriving UMP tests, calculating the p-values, and computing 
+    confidence intervals.
+License: What license it uses
+Encoding: UTF-8
+LazyData: true
