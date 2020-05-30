@@ -32,8 +32,7 @@ devtools::install_github("ttran2401/binomialDP")
 Refer to the package vignette for more information.
 
 
-## Citing the Package
-
+## Citation
 If you use this package for academic purposes, please cite this package along
 with the paper on differentially private inference for binomial data:
 
