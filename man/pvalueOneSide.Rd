@@ -5,13 +5,13 @@
 \alias{pval}
 \alias{pvalleft}
 \alias{pvalright}
-\alias{pvalLeft}
 \alias{pvalRight}
+\alias{pvalLeft}
 \title{Calculating UMP One-Sided p-values}
 \usage{
-pvalLeft(Z, size, theta, b, q)
-
 pvalRight(Z, size, theta, b, q)
+
+pvalLeft(Z, size, theta, b, q)
 }
 \arguments{
 \item{Z}{A Binomial sample with Tulap noise}
