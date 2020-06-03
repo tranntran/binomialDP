@@ -29,7 +29,7 @@ NULL
 
 #' @rdname pvalueOneSide
 #' @export
-pvalLeft <- function(Z, size, theta, b, q){
+pvalRight <- function(Z, size, theta, b, q){
   reps = base::length(Z)
   pval = base::rep(0,reps)
   values = base::seq(0,size)
@@ -46,7 +46,7 @@ pvalLeft <- function(Z, size, theta, b, q){
 
 #' @rdname pvalueOneSide
 #' @export
-pvalRight <- function(Z, size, theta, b, q){
+pvalLeft <- function(Z, size, theta, b, q){
   reps = base::length(Z)
   pval = base::rep(0,reps)
   values = base::seq(0,size)
