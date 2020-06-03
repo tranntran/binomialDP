@@ -137,7 +137,7 @@ knitr::kable(tab)
 It is clear that with these p-values, we fail to reject the null hypothesis at level $\small \alpha = 0.05$ for all 10 observations. Since the true value $\small \theta= 0.4$ is in the null hypothesis, this confirms that the p-value has calibrated type I error.
 
 ```{r}
-mean(pvalL < 0.05)
+mean(pvalR < 0.05)
 ```
 
 ### Asymptotically Unbiased DP p-Values
@@ -160,8 +160,7 @@ Thus, we only have enough evidence to reject the null hypothesis at level $\smal
 We first calculate the non-private p-values using the first observation in the original data $\small X$: 
 ```{r}
 x = (X[1]/n-0.5)/sqrt(0.5^2/30)
-pL = pnorm(x, mean = 0, sd = 1, lower.tail = FALSE)
-pR = pnorm(x, mean = 0, sd = 1)
+pR = pnorm(x, mean = 0, sd = 1, lower.tail = FALSE)
 ```
 
 Then we add Tulap noise to the true data and calculate the private p-values 100,000 times. The distribution of private p-values compared to the non-private one is shown in the plot below. The randomness of private p-values helps preserve privacy.
@@ -169,15 +168,15 @@ Then we add Tulap noise to the true data and calculate the private p-values 100,
 ```{r, fig.width = 6, fig.height=4, fig.align = 'center'}
 #calculate private pvalue of the first observation 100000 times
 tulap = rep(X[1], 100000) + rtulap(n = 100000, m = 0, b = b, q = q)
-ppval = pvalLeft(tulap, n, 0.5, b, q)
+ppval = pvalRight(tulap, n, 0.5, b, q)
 
 #plot the distriution of private p-values vs. non-private p-value
 hist(ppval, xlim = c(0,1), 
      main = "Distribution of Private vs Non-Private p-values for X[1]", 
      xlab = "p-values")
-abline(v=pL, col = "red")
+abline(v=pR, col = "red")
 legend("topright", 
-       legend=c(paste("Non-private p-value =", round(pL,2)), 
+       legend=c(paste("Non-private p-value =", round(pR,2)), 
                 paste("Avg private p-value =", round(mean(ppval), 2))), 
        col=c("red", "black"), lty=1, lwd = 1.5)
 ```
@@ -209,8 +208,8 @@ legend("topright",
 Here, we know the value of the first observation in X is 18 and its corresponding $\small \theta$ is 0.6. However, in the real setting, we only know the value of the first observation in the differentially private data Z is 18.4243, and we want to estimate the $\small 95\%$ confidence interval of $\small \theta$.
 
 ```{r}
-CILeft(alpha = 0.05, Z[1], size = n, b = b, q = q)
-CIRight(alpha = 0.05, Z[1], size = n, b = b, q = q)
+CILower(alpha = 0.05, Z[1], size = n, b = b, q = q)
+CIUpper(alpha = 0.05, Z[1], size = n, b = b, q = q)
 ```
 
 The upper and lower CI for $\small \theta$ at level $\small \alpha=0.05$ given the first observation of Z is $\small(0.45,1)$ and $\small (0, 0.76)$, respectively. Similarly, we obtain the lower bounds of the one-sided confidence intervals from the first 10 observations from the data:
@@ -218,7 +217,7 @@ The upper and lower CI for $\small \theta$ at level $\small \alpha=0.05$ given t
 ```{r, echo = FALSE}
 CIone = rep(NA, length(Z))
 for (i in 1:length(Z)){
-  CIone[i] = CILeft(alpha = 0.05, Z[i], size = n, b = b, q = q)
+  CIone[i] = CILower(alpha = 0.05, Z[i], size = n, b = b, q = q)
 }
 ```
 
@@ -251,6 +250,15 @@ tab1 = rbind(head(Z,10), head(CITwoLower, 10), head(CITwoUpper, 10))
 rownames(tab1) = c("Z", "Lower Bound", "Upper Bound")
 knitr::kable(tab1)
 ```
+
+## Comparing Differentially Private and Non-Private Population Proportion Test
+```{r}
+#private test on noisy sample Z[1]
+dpPropTest(Z[1], size = n, theta = 0.5, b = b, q = q, "greater", 0.05)
+#non-private test on real data X[1]
+prop.test(X[1], n, p = 0.5, "greater", conf.level = 0.95, correct = FALSE)
+```
+
 
 ## References
 Awan, Jordan Alexander, and Aleksandra Slavkovic. 2020. “Differentially Private Inference for Binomial Data”. Journal of Privacy and Confidentiality 10 (1). https://doi.org/10.29012/jpc.725.
