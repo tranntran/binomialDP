@@ -255,6 +255,7 @@ knitr::kable(tab1)
 ```{r}
 #private test on noisy sample Z[1]
 dpPropTest(Z[1], size = n, theta = 0.5, b = b, q = q, "greater", 0.05)
+
 #non-private test on real data X[1]
 prop.test(X[1], n, p = 0.5, "greater", conf.level = 0.95, correct = FALSE)
 ```
