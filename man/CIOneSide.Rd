@@ -3,18 +3,18 @@
 \name{CIOneSide}
 \alias{CIOneSide}
 \alias{cioneside}
-\alias{cileft}
-\alias{ciright}
-\alias{CILeft}
-\alias{CIRight}
+\alias{cilower}
+\alias{ciupper}
+\alias{CILower}
+\alias{CIUpper}
 \title{Finding One-Sided Confidence Intervals}
 \usage{
-CILeft(alpha, Z, size, b, q)
+CILower(alpha, Z, size, b, q)
 
-CIRight(alpha, Z, size, b, q)
+CIUpper(alpha, Z, size, b, q)
 }
 \arguments{
-\item{alpha}{The level of confidence intervals}
+\item{alpha}{The confidence level of the returned confidence intervals}
 
 \item{Z}{A Binomial sample with Tulap noise}
 
@@ -26,14 +26,14 @@ Binomial(n, \eqn{\theta}))}
 \item{q}{The truncated quantiles}
 }
 \value{
-A lower bound
+`CILower` returns a lower bound while `CIUpper` returns an upper bound.
 }
 \description{
 Finding One-Sided Confidence Intervals
 }
 \examples{
-CILeft(0.05, 7, 10, exp(-1), 0.05) #confidence interval (0.384, 1)
-CIRight(0.05, 2, 10, exp(-1), 0.05) #confidence interval (0, 0.517)
+CILower(0.05, 7, 10, exp(-1), 0.05) #confidence interval (0.384, 1)
+CIUpper(0.05, 2, 10, exp(-1), 0.05) #confidence interval (0, 0.517)
 }
 \references{
 Awan, Jordan Alexander, and Aleksandra Slavkovic. 2020.
