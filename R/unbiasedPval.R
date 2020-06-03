@@ -29,5 +29,5 @@ pvalTwoSide <- function(Z, size, theta, b, q){
   pval = base::rep(0,reps)
   values = base::seq(0,size)
   T = base::abs(Z-size*theta)
-  return(pvalLeft(Z = T+size*theta, size, theta, b, q) + 1-pvalLeft(Z = size*theta-T, size, theta, b, q))
+  return(pvalRight(Z = T+size*theta, size, theta, b, q) + 1-pvalRight(Z = size*theta-T, size, theta, b, q))
 }
