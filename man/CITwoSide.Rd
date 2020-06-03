@@ -8,7 +8,7 @@
 CITwoSide(alpha, Z, size, b, q)
 }
 \arguments{
-\item{alpha}{The confidence interval level}
+\item{alpha}{The confidence level of the returned confidence interval}
 
 \item{Z}{A Binomial sample with Tulap noise}
 
@@ -36,6 +36,6 @@ Awan, Jordan Alexander, and Aleksandra Slavkovic. 2020.
   and Confidentiality 10 (1). \url{https://doi.org/10.29012/jpc.725}.
 }
 \seealso{
-Finding one-sided confidence intervals \code{\link{CILeft}} and
-  \code{\link{CIRight}}
+Finding one-sided confidence intervals \code{\link{CILower}} and
+  \code{\link{CIUpper}}
 }
