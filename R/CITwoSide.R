@@ -2,7 +2,7 @@
 #' @name CITwoSide
 #' @aliases citwoside
 #'
-#' @param alpha The confidence interval level
+#' @param alpha The confidence level of the returned confidence interval
 #' @param Z A Binomial sample with Tulap noise
 #' @param size The number of trials in Binomial distribution (parameter n in
 #'   Binomial(n, \eqn{\theta}))
@@ -15,8 +15,8 @@
 #' @references Awan, Jordan Alexander, and Aleksandra Slavkovic. 2020.
 #'   "Differentially Private Inference for Binomial Data". Journal of Privacy
 #'   and Confidentiality 10 (1). \url{https://doi.org/10.29012/jpc.725}.
-#' @seealso Finding one-sided confidence intervals \code{\link{CILeft}} and
-#'   \code{\link{CIRight}}
+#' @seealso Finding one-sided confidence intervals \code{\link{CILower}} and
+#'   \code{\link{CIUpper}}
 #'
 #' @examples
 #' CITwoSide(alpha = 0.05, Z = 18, size = 30, b = exp(-1), q = 0.05) #(0.411, 0.767)
