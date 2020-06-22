@@ -26,7 +26,8 @@ devtools::install_github("ttran2401/binomialDP")
 
 ## Examples
 
-Please see Get Started for the package demonstration and Articles for more examples.
+Please see **Get Started** for the package demonstration and
+**Articles** for more examples.
 
 ## Citation
 
@@ -34,10 +35,10 @@ If you use this package for academic purposes, please cite this package
 along with the paper on differentially private inference for binomial
 data:
 
-> Jordan Awan, Aleksandra Slavkovic and Tran Tran (2020). binomialDP:
-> Differentially Private Inference for Binomial Data. R package version
-> 1.0.0.
+Jordan Awan, Aleksandra Slavkovic and Tran Tran (2020). binomialDP:
+Differentially Private Inference for Binomial Data. R package version
+1.0.0.
 
-> Awan, Jordan Alexander, and Aleksandra Slavkovic. “Differentially
-> Private Inference for Binomial Data.” Journal of Privacy and
-> Confidentiality 10, no. 1 (2020).
+Awan, Jordan Alexander, and Aleksandra Slavkovic. “Differentially
+Private Inference for Binomial Data.” Journal of Privacy and
+Confidentiality 10, no. 1 (2020).
