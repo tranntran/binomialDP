@@ -26,9 +26,7 @@ devtools::install_github("ttran2401/binomialDP")
 
 ## Examples
 
-Refer to the [package
-vignette](https://htmlpreview.github.io/?https://github.com/ttran2401/binomialDP/blob/master/binomialDP.html)
-for more information.
+Please see Get Started for the package demonstration and Articles for more examples.
 
 ## Citation
 
