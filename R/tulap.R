@@ -12,7 +12,10 @@
 #' @param q vector of truncated quantiles
 #' @param n number of observations
 #'
-#' @examples rtulap(1000, 1, 0.3, 0.05)
+#' @examples
+#' sample <- rtulap(1000, 1, 0.3, 0.05)
+#' sample[1:10]
+#' plot(density(sample))
 #' ptulap(0.5, 0, 0.3, 0.05)
 #'
 #' @return \code{ptulap} gives the distribution function and \code{rtulap}
