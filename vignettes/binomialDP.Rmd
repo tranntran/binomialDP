@@ -14,7 +14,7 @@ vignette: >
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
-## The Truncated-Uniform-Laplace (Tulap) Distrubution
+## 1. The Truncated-Uniform-Laplace (Tulap) Distrubution
 The distribution $\small Tulap(m, b, 0)$ is obtained by adding discrete Laplace noise $\small L \sim DLap(e^{-\epsilon})$ and continuous uniform noise $\small U \sim Unif(-1/2, 1/2)$ to the value m. The distribution $\small Tulap(m,b,q)$ is obtained by truncating between the $\small (q/2)^{th}$ and the $\small (1-q/2)^{th}$ quantiles of the $\small Tulap(m,b,0)$ distribution. 
 
 Similar to other distribution functions, the `ptulap()` function gives the distribution function, and `rtulap()` generates random sample from this distribution. For example, to sample 10,000 observations from Tulap distribution, with the median of 30, $\small b = e^{-1}$, and $\small q = 0.06$:
@@ -28,7 +28,7 @@ plot(density(rand), main = "Random Sample of 10000 \n from Tulap Distribution", 
 
 The figure confirms that a Tulap random variable is continuous and symmetric around the median. When q = 0, the distribution is not truncated.
 
-## Simulated Data
+## 2. Simulated Data
 
 First, we obtain the original data set by sampling from the binomial distribution with `rbinom()`. Then, we make it differentially private by adding noise from the Tulap distribution through the function `rtulap()`. The latter data is the data we will perform statistical testing on. 
 
@@ -42,7 +42,7 @@ set.seed(1001)
 #set up the parameters
 n = 30                      #number of trials
 truth = 0.4                 #true theta
-reps = 100000               #sample size
+reps = 10000                #sample size
 ep = 1                      #epsilon
 de = 0.01                   #delta
 b = exp(-ep)                #b
@@ -75,9 +75,9 @@ legend("topright", c("Original", "Tulap"), col = c("black", "blue"), lwd = 1)
 ```
 
 
-## Differentially Private Uniformly Most Powerful Tests (DP-UMP)
+## 3. Differentially Private Uniformly Most Powerful Tests (DP-UMP)
 
-### Simple and One-Sided DP-UMP Tests
+### 3.1. Simple and One-Sided DP-UMP Tests
 For example, to calculate the one-sided left DP-UMP test for $\small H_0: \theta \le 0.4$ against $\small H_1: \theta > 0.4$:
 ```{r}
 leftUMP = umpLeft(theta = 0.4, size = 10, alpha = 0.05, epsilon = ep, delta = de)
@@ -97,13 +97,13 @@ As expected, the power of the left UMP is 0.05.
 dbinom(seq(0, 10),size = 10,prob = truth)%*%leftUMP
 ```
 
-### Unbiased Two-Sided DP-UMP Tests
+### 3.2. Unbiased Two-Sided DP-UMP Tests
 Following up from the previous example, we calculate the unbiased two-sided DP-UMP for $\small H_0: \theta= 0.4$ against $\small H_1: \theta \neq 0.4$.
 ```{r umpu}
 twoUMP = UMPU(theta = 0.4, size = 10, alpha = 0.05, epsilon = ep, delta = de)
 ```
 
-### Asymptotically Unbiased Two-Sided DP-UMP Tests
+### 3.3. Asymptotically Unbiased Two-Sided DP-UMP Tests
 ```{r}
 numpu = umpuApprox(theta = 0.4, size = 10, alpha = 0.05, epsilon = ep, delta = de)
 ```
@@ -116,47 +116,48 @@ legend("topleft", legend=c("Asymptotically UMPU", "UMPU"), col=c("red", "blue"),
 ```
 
 
-## p-Values
+## 4. p-Values
 
-### UMP One-Sided p-Values
-We continue to use the noisy data $\small Z$ to test the hypothesis $\small H_0: \theta \le 0.5$ against $\small H_A: \theta > 0.5$. As shown in the Data Simulation section, the true data $\small X$ is simulated under Binomial distristribution with $\small \theta = 0.4$, which is unknown in the real setting, and the noisy data $\small Z$ is obtained by adding $\small Tulap(0,b,q)$ noise to $\small X$.  
+### 4.1. UMP One-Sided p-Values
+We continue to use the noisy data $\small Z$ to test the hypothesis $\small H_0: \theta = 0.4$ against $\small H_A: \theta < 0.4$ with function `pvalLeft` and against $\small H_A: \theta > 0.4$ with function `pvalRight`. As shown in the Data Simulation section, the true data $\small X$ is simulated under Binomial distristribution with $\small \theta = 0.4$, which is unknown in the real setting, and the noisy data $\small Z$ is obtained by adding $\small Tulap(0,b,q)$ noise to $\small X$.  
 
 ```{r}
-pvalL = pvalLeft(Z, size = n, theta = 0.5, b = b, q = q)
-pvalR = pvalRight(Z, size = n, theta = 0.5, b = b, q = q)
+pvalL = pvalLeft(Z, size = n, theta = 0.4, b = b, q = q)
+pvalR = pvalRight(Z, size = n, theta = 0.4, b = b, q = q)
 ```
 
 The p-values for the first 10 observations in $\small Z$ is summarized below:
-```{r,results='asis', echo = FALSE}
+```{r,results='asis', echo = FALSE, fig.align='center'}
 options(digits=2)
 tab = rbind(head(Z, 10), head(pvalL, 10), head(pvalR, 10))
 rownames(tab) = c("Z","Left private p-value", "Right private p-value")
 knitr::kable(tab)
 ```
 
-It is clear that with these p-values, we fail to reject the null hypothesis at level $\small \alpha = 0.05$ for all 10 observations. Since the true value $\small \theta= 0.4$ is in the null hypothesis, this confirms that the p-value has calibrated type I error.
+Since the true value $\small \theta= 0.4$ is in the null hypothesis, this confirms that the p-value has calibrated type I error:
 
 ```{r}
-mean(pvalR < 0.05)
+mean(pvalL <= 0.05)
+mean(pvalR <= 0.05)
 ```
 
-### Asymptotically Unbiased DP p-Values
+### 4.2. Asymptotically Unbiased DP p-Values
 Following up from the example above, we now test $\small H_0:\theta = 0.5$ versus $\small H_A: \theta \neq 0.5$ at level $\small \alpha = 0.05$. This test is an approximation to the DP-UMPU, with calibrated type I error, but is only asymptotically unbiased.
 
 ```{r}
 upval = pvalTwoSide(Z, size = n, theta = 0.5, b = b, q = q)
 ```
 
-```{r, results='asis', echo=FALSE}
+```{r, results='asis', echo=FALSE, fig.align='center'}
 options(digits = 2)
 tabpval2 = rbind(head(Z, 10), head(upval, 10))
 rownames(tabpval2) = c("Z", "P-Value")
 knitr::kable(tabpval2)
 ```
 
-Thus, we only have enough evidence to reject the null hypothesis at level $\small \alpha = 0.05$ with the 8th and 9th observation.
+Thus, we only have enough evidence to reject the null hypothesis at level $\small \alpha = 0.05$ with the 4th, 7th and 8th observation.
 
-### Comparing Private and Non-Private p-values
+### 4.3. Comparing Private and Non-Private p-values
 We first calculate the non-private p-values using the first observation in the original data $\small X$: 
 ```{r}
 x = (X[1]/n-0.5)/sqrt(0.5^2/30)
@@ -174,11 +175,12 @@ ppval = pvalRight(tulap, n, 0.5, b, q)
 hist(ppval, xlim = c(0,1), 
      main = "Distribution of Private vs Non-Private p-values for X[1]", 
      xlab = "p-values")
-abline(v=pR, col = "red")
+abline(v = pR, col = "red")
+abline(v = mean(ppval), lty = 2)
 legend("topright", 
        legend=c(paste("Non-private p-value =", round(pR,2)), 
                 paste("Avg private p-value =", round(mean(ppval), 2))), 
-       col=c("red", "black"), lty=1, lwd = 1.5)
+       col=c("red", "black"), lty=1:2, lwd = 1.5)
 ```
 
 Similarly, we continue to compare private vs. non private two-sided p-values:
@@ -193,18 +195,19 @@ ppval2 = pvalTwoSide(tulap, n, 0.5, b, q)
 hist(ppval2, xlim = c(0,1), 
      main = "Distribution of Private vs Non-Private Two-Sided p-values for X[1]", 
      xlab = "p-values", probability = TRUE)
-abline(v= p2, col = "red")
+abline(v = p2, col = "red")
+abline(v = mean(ppval2), lty = 2)
 legend("topright", 
        legend=c(paste("Non-private p-value =", round(p2,2)), 
                 paste("Avg private p-value =", round(mean(ppval2), 2))), 
-       col=c("red", "black"), lty=1, lwd = 1.5)
+       col=c("red", "black"), lty=1:2, lwd = 1.5)
 
 
 ```
 
-## Confidence Intervals
+## 5. Confidence Intervals
 
-### One-sided Confidence Intervals
+### 5.1. One-sided Confidence Intervals
 Here, we know the value of the first observation in X is 18 and its corresponding $\small \theta$ is 0.6. However, in the real setting, we only know the value of the first observation in the differentially private data Z is 18.4243, and we want to estimate the $\small 95\%$ confidence interval of $\small \theta$.
 
 ```{r}
@@ -215,19 +218,19 @@ CIUpper(alpha = 0.05, Z[1], size = n, b = b, q = q)
 The upper and lower CI for $\small \theta$ at level $\small \alpha=0.05$ given the first observation of Z is $\small(0.45,1)$ and $\small (0, 0.76)$, respectively. Similarly, we obtain the lower bounds of the one-sided confidence intervals from the first 10 observations from the data:
 
 ```{r, echo = FALSE}
-CIone = rep(NA, length(Z))
-for (i in 1:length(Z)){
+CIone = rep(NA, 10)
+for (i in 1:10){
   CIone[i] = CILower(alpha = 0.05, Z[i], size = n, b = b, q = q)
 }
 ```
 
-```{r, results='asis', echo=FALSE}
-tab2 = rbind(head(Z,10), head(CIone, 10), rep(1,10))
+```{r, results='asis', echo=FALSE, fig.align='center'}
+tab2 = rbind(head(Z,10), CIone, rep(1,10))
 rownames(tab2) = c("Z", "Lower Bound", "Upper Bound")
 knitr::kable(tab2)
 ```
 
-### Asymptotically Unbiased Two-sided Confidence Intervals
+### 5.2. Asymptotically Unbiased Two-sided Confidence Intervals
 `CINearlyUnbiased()` computes the asymptotically unbiased two-sided confidence interval for $\small \theta$ with specified level of $\small \alpha$. This confidence interval is typically more accurate than the simple two-sided confidence interval. For example, to calculate the two-sided confidence interval of $\small \theta$ of the first observation in Z:
 
 ```{r}
@@ -237,21 +240,21 @@ CITwoSide(alpha = 0.05, Z[1], size = n, b = b, q = q)
 Similarly, we obtain the $\small 95\%$ two-sided confidence intervals for the first 10 observations in Z:
 
 ```{r, results='hide'}
-CITwoUpper = rep(NA, length(Z))
-CITwoLower = rep(NA, length(Z))
-for (i in 1:length(Z)){
+CITwoUpper = rep(NA, 10)
+CITwoLower = rep(NA, 10)
+for (i in 1:10){
   CITwoLower[i] = CITwoSide(alpha = 0.05, Z[i], size = n, b = b, q = q)[1]
   CITwoUpper[i] = CITwoSide(alpha = 0.05, Z[i], size = n, b = b, q = q)[2]
 }
 ```
 
-```{r, echo= FALSE, results='asis'}
-tab1 = rbind(head(Z,10), head(CITwoLower, 10), head(CITwoUpper, 10))
+```{r, echo= FALSE, results='asis', fig.align='center'}
+tab1 = rbind(head(Z,10), CITwoLower, CITwoUpper)
 rownames(tab1) = c("Z", "Lower Bound", "Upper Bound")
 knitr::kable(tab1)
 ```
 
-## Comparing Differentially Private and Non-Private Population Proportion Test
+## 6. Comparing Differentially Private and Non-Private Population Proportion Test
 ```{r}
 #private test on noisy sample Z[1]
 dpPropTest(Z[1], size = n, theta = 0.5, b = b, q = q, "greater", 0.05)
@@ -261,7 +264,7 @@ prop.test(X[1], n, p = 0.5, "greater", conf.level = 0.95, correct = FALSE)
 ```
 
 
-## References
+## 7. References
 Awan, Jordan Alexander, and Aleksandra Slavkovic. 2020. “Differentially Private Inference for Binomial Data”. Journal of Privacy and Confidentiality 10 (1). https://doi.org/10.29012/jpc.725.
 
 Awan, Jordan, and Aleksandra Slavković. "Differentially private uniformly most powerful tests for binomial data." In Advances in Neural Information Processing Systems, pp. 4208-4218. 2018.
