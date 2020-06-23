@@ -26,8 +26,8 @@ devtools::install_github("ttran2401/binomialDP")
 
 ## Examples
 
-Please see **Get Started** for the package demonstration and
-**Articles** for more examples.
+Please see **Get Started** for the package demonstration and working
+examples.
 
 ## Citation
 
