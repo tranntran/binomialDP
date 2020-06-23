@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Differentially Private Inference for Binomial Data • binomialDP</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/yeti/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -43,18 +43,40 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Get Started
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
 <li>
-  <a href="articles/binomialDP.html">Get started</a>
+      <a href="articles/binomialDP.html">Vignette</a>
+    </li>
+    <li>
+      <a href="articles/PULSE.html">PULSE Example</a>
+    </li>
+  </ul>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="reference/index.html">References</a>
+</li>
+<li>
+  <a href="news/index.html">News</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/ttran2401/binomialDP">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -91,18 +113,14 @@
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
-<p>Refer to the <a href="https://htmlpreview.github.io/?https://github.com/ttran2401/binomialDP/blob/master/binomialDP.html">package vignette</a> for more information.</p>
+<p>Please see <strong>Get Started</strong> for the package demonstration and working examples.</p>
 </div>
 <div id="citation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#citation" class="anchor"></a>Citation</h2>
 <p>If you use this package for academic purposes, please cite this package along with the paper on differentially private inference for binomial data:</p>
-<blockquote>
 <p>Jordan Awan, Aleksandra Slavkovic and Tran Tran (2020). binomialDP: Differentially Private Inference for Binomial Data. R package version 1.0.0.</p>
-</blockquote>
-<blockquote>
 <p>Awan, Jordan Alexander, and Aleksandra Slavkovic. “Differentially Private Inference for Binomial Data.” Journal of Privacy and Confidentiality 10, no. 1 (2020).</p>
-</blockquote>
 </div>
 </div>
   </div>
@@ -117,11 +135,12 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Jordan Awan <br><small class="roles"> Author, maintainer </small>  <br><small>(https://scholar.google.com/citations?user=fhCtCW8AAAAJ&amp;hl=en)</small>
-</li>
-<li>Aleksandra Slavkovic <br><small class="roles"> Author </small>  <br><small>(https://scholar.google.com/citations?user=plbHxNUAAAAJ&amp;hl=en)</small>
-</li>
-<li>Tran Tran <br><small class="roles"> Author </small>  </li>
+<li>
+<a href="https://scholar.google.com/citations?user=fhCtCW8AAAAJ&amp;hl=en">Jordan Awan</a> <br><small class="roles"> Author, maintainer </small>  </li>
+<li>
+<a href="https://scholar.google.com/citations?user=plbHxNUAAAAJ&amp;hl=en">Aleksandra Slavkovic</a> <br><small class="roles"> Author </small>  </li>
+<li>
+<a href="https://science.psu.edu/stat/people/tnt5276">Tran Tran</a> <br><small class="roles"> Author </small>  </li>
 </ul>
 </div>
 
@@ -130,7 +149,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Jordan Awan, Aleksandra Slavkovic, Tran Tran.</p>
+  <p>Developed by <a href="https://scholar.google.com/citations?user=fhCtCW8AAAAJ&amp;hl=en">Jordan Awan</a>, <a href="https://scholar.google.com/citations?user=plbHxNUAAAAJ&amp;hl=en">Aleksandra Slavkovic</a>, <a href="https://science.psu.edu/stat/people/tnt5276">Tran Tran</a>.</p>
 </div>
 
 <div class="pkgdown">

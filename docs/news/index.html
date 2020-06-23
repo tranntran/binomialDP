@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculating Asymptotically Unbiased DP Two-Sided P-Value — pvalueTwoSide • binomialDP</title>
+<title>Changelog • binomialDP</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,7 @@
 
 
 
-<meta property="og:title" content="Calculating Asymptotically Unbiased DP Two-Sided P-Value — pvalueTwoSide" />
-<meta property="og:description" content="Calculating Asymptotically Unbiased DP Two-Sided P-Value" />
+<meta property="og:title" content="Changelog" />
 
 
 
@@ -59,7 +58,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -126,67 +125,25 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculating Asymptotically Unbiased DP Two-Sided P-Value</h1>
-    
-    <div class="hidden name"><code>pvalueTwoSide.Rd</code></div>
+      <h1 data-toc-skip>Changelog <small></small></h1>
+      
     </div>
 
-    <div class="ref-description">
-    <p>Calculating Asymptotically Unbiased DP Two-Sided P-Value</p>
-    </div>
-
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/binomialDP/man/pvalueTwoSide.html'>pvalTwoSide</a></span>(<span class='kw'>Z</span>, <span class='kw'>size</span>, <span class='kw'>theta</span>, <span class='kw'>b</span>, <span class='kw'>q</span>)</pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>Z</th>
-      <td><p>A Binomial sample with Tulap noise</p></td>
-    </tr>
-    <tr>
-      <th>size</th>
-      <td><p>The number of trials in Binomial distribution (parameter n in
-Binomial(n, \(\theta\)))</p></td>
-    </tr>
-    <tr>
-      <th>theta</th>
-      <td><p>The success probability for each trial (parameter \(\theta\)
-in Binomial(n, \(\theta\)))</p></td>
-    </tr>
-    <tr>
-      <th>b</th>
-      <td><p>Discrete Laplace noise parameters, obtained by \(exp(-\epsilon)\)</p></td>
-    </tr>
-    <tr>
-      <th>q</th>
-      <td><p>The truncated quantiles</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A vector of asymptotically unbiased two-sided p-values</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>Awan, Jordan Alexander, and Aleksandra Slavkovic. 2020.
-  "Differentially Private Inference for Binomial Data". Journal of Privacy
-  and Confidentiality 10 (1). <a href='https://doi.org/10.29012/jpc.725'>https://doi.org/10.29012/jpc.725</a>.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>UMP one-sided p-values (<code><a href='https://rdrr.io/pkg/binomialDP/man/pvalueOneSide.html'>pvalLeft</a></code> and
-  <code><a href='https://rdrr.io/pkg/binomialDP/man/pvalueOneSide.html'>pvalRight</a></code>)</p></div>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>2020</span>)
-<span class='kw'>sample</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>rbinom</a></span>(<span class='fl'>1</span>, <span class='fl'>10</span>, <span class='fl'>0.2</span>) <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/pkg/binomialDP/man/tulap.html'>rtulap</a></span>(<span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>0.3</span>, <span class='fl'>0.05</span>)
-<span class='fu'><a href='https://rdrr.io/pkg/binomialDP/man/pvalueTwoSide.html'>pvalTwoSide</a></span>(<span class='kw'>sample</span>, size = <span class='fl'>10</span>, theta = <span class='fl'>0.5</span>,b = <span class='fl'>0.3</span>, q = <span class='fl'>0.05</span>)</div><div class='output co'>#&gt; [1] 0.2528762</div><div class='input'></div></pre>
+    <div id="binomialdp-100" class="section level1">
+<h1 class="page-header" data-toc-text="1.0.0">
+<a href="#binomialdp-100" class="anchor"></a>binomialDP 1.0.0</h1>
+<ul>
+<li>This is the initial release of the package binomialDP.</li>
+</ul>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
+
 </div>
 
 
