@@ -31,7 +31,9 @@ Distribution function and random generation for the Tulap
   distribution.
 }
 \examples{
-rtulap(1000, 1, 0.3, 0.05)
+sample <- rtulap(1000, 1, 0.3, 0.05)
+sample[1:10]
+plot(density(sample))
 ptulap(0.5, 0, 0.3, 0.05)
 
 }
