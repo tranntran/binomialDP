@@ -1,0 +1,31 @@
+URL: https://github.com/ttran2401/binomialDP, https://ttran2401.github.io/binomialDP/
+template:
+  params:
+    bootswatch: yeti
+
+navbar:
+  title: "binomialDP"
+  left:
+    - icon: fa-home fa-lg
+      href: index.html
+    - text: "Get Started"
+      menu:
+        - text: "Vignette"
+          href: articles/binomialDP.html
+        - text: "PULSE Example"
+          href: articles/PULSE.html
+    - text: "References"
+      href: reference/index.html
+    - text: "News"
+      href: news/index.html
+  right:
+   - icon: fa-github
+     href: https://github.com/ttran2401/binomialDP
+
+authors:
+  Jordan Awan:
+    href: https://scholar.google.com/citations?user=fhCtCW8AAAAJ&hl=en
+  Aleksandra Slavkovic:
+    href: https://scholar.google.com/citations?user=plbHxNUAAAAJ&hl=en
+  Tran Tran:
+    href: https://science.psu.edu/stat/people/tnt5276
