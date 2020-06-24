@@ -10,6 +10,8 @@ tests, private p-values, and private confidence intervals. Also included
 in the package are the CDF function and the random deviate generator of
 the Truncated-Uniform-Laplace (Tulap) distribution.
 
+<meta name="google-site-verification" content="EQ-OjuZABpk1aIK0K89OAB8qDB9ZQkCKjMZBAjbI8-s" />
+
 ## Installation
 
 To install the package, run one of the following:
