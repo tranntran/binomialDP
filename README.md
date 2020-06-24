@@ -21,7 +21,7 @@ library(binomialDP)
 
 ## The latest development version from Github
 install.packages("devtools")
-devtools::install_github("ttran2401/binomialDP")
+devtools::install_github("tranntran/binomialDP")
 ```
 
 ## Examples
