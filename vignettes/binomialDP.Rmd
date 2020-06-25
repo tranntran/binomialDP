@@ -104,6 +104,7 @@ twoUMP = UMPU(theta = 0.4, size = 10, alpha = 0.05, epsilon = ep, delta = de)
 ```
 
 ### 3.3. Asymptotically Unbiased Two-Sided DP-UMP Tests
+This test is an approximation to the DP-UMPU, with calibrated type I error, but is only asymptotically unbiased.
 ```{r}
 numpu = umpuApprox(theta = 0.4, size = 10, alpha = 0.05, epsilon = ep, delta = de)
 ```
@@ -142,7 +143,7 @@ mean(pvalR <= 0.05)
 ```
 
 ### 4.2. Asymptotically Unbiased DP p-Values
-Following up from the example above, we now test $\small H_0:\theta = 0.5$ versus $\small H_A: \theta \neq 0.5$ at level $\small \alpha = 0.05$. This test is an approximation to the DP-UMPU, with calibrated type I error, but is only asymptotically unbiased.
+Following up from the example above, we now test $\small H_0:\theta = 0.5$ versus $\small H_A: \theta \neq 0.5$ at level $\small \alpha = 0.05$.
 
 ```{r}
 upval = pvalTwoSide(Z, size = n, theta = 0.5, b = b, q = q)
@@ -215,7 +216,7 @@ CILower(alpha = 0.05, Z[1], size = n, b = b, q = q)
 CIUpper(alpha = 0.05, Z[1], size = n, b = b, q = q)
 ```
 
-The upper and lower CI for $\small \theta$ at level $\small \alpha=0.05$ given the first observation of Z is $\small(0.45,1)$ and $\small (0, 0.76)$, respectively. Similarly, we obtain the lower bounds of the one-sided confidence intervals from the first 10 observations from the data:
+The upper and lower CI for $\small \theta$ at level $\small \alpha=0.05$ given the first observation of Z is $\small(0.46,1)$ and $\small (0, 0.77)$, respectively. Similarly, we obtain the lower bounds of the one-sided confidence intervals from the first 10 observations from the data:
 
 ```{r, echo = FALSE}
 CIone = rep(NA, 10)
@@ -231,7 +232,7 @@ knitr::kable(tab2)
 ```
 
 ### 5.2. Asymptotically Unbiased Two-sided Confidence Intervals
-`CINearlyUnbiased()` computes the asymptotically unbiased two-sided confidence interval for $\small \theta$ with specified level of $\small \alpha$. This confidence interval is typically more accurate than the simple two-sided confidence interval. For example, to calculate the two-sided confidence interval of $\small \theta$ of the first observation in Z:
+`CITwoSide()` computes the asymptotically unbiased two-sided confidence interval for $\small \theta$ with specified level of $\small \alpha$. This confidence interval is typically more accurate than the simple two-sided confidence interval. For example, to calculate the two-sided confidence interval of $\small \theta$ of the first observation in Z:
 
 ```{r}
 CITwoSide(alpha = 0.05, Z[1], size = n, b = b, q = q)

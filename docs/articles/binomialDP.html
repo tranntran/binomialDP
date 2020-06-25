@@ -207,6 +207,7 @@
 <div id="asymptotically-unbiased-two-sided-dp-ump-tests" class="section level3">
 <h3 class="hasAnchor">
 <a href="#asymptotically-unbiased-two-sided-dp-ump-tests" class="anchor"></a>3.3. Asymptotically Unbiased Two-Sided DP-UMP Tests</h3>
+<p>This test is an approximation to the DP-UMPU, with calibrated type I error, but is only asymptotically unbiased.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="kw">numpu</span> <span class="op">=</span> <span class="fu"><a href="../reference/umpuApprox.html">umpuApprox</a></span>(theta = <span class="fl">0.4</span>, size = <span class="fl">10</span>, alpha = <span class="fl">0.05</span>, epsilon = <span class="kw">ep</span>, delta = <span class="kw">de</span>)
 </pre></div>
@@ -277,7 +278,7 @@
 <div id="asymptotically-unbiased-dp-p-values" class="section level3">
 <h3 class="hasAnchor">
 <a href="#asymptotically-unbiased-dp-p-values" class="anchor"></a>4.2. Asymptotically Unbiased DP p-Values</h3>
-<p>Following up from the example above, we now test <span class="math inline">\(\small H_0:\theta = 0.5\)</span> versus <span class="math inline">\(\small H_A: \theta \neq 0.5\)</span> at level <span class="math inline">\(\small \alpha = 0.05\)</span>. This test is an approximation to the DP-UMPU, with calibrated type I error, but is only asymptotically unbiased.</p>
+<p>Following up from the example above, we now test <span class="math inline">\(\small H_0:\theta = 0.5\)</span> versus <span class="math inline">\(\small H_A: \theta \neq 0.5\)</span> at level <span class="math inline">\(\small \alpha = 0.05\)</span>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit">
 <span class="kw">upval</span> <span class="op">=</span> <span class="fu"><a href="../reference/pvalueTwoSide.html">pvalTwoSide</a></span>(<span class="kw">Z</span>, size = <span class="kw">n</span>, theta = <span class="fl">0.5</span>, b = <span class="kw">b</span>, q = <span class="kw">q</span>)
 </pre></div>
@@ -372,7 +373,7 @@
 <span class="fu"><a href="../reference/CIOneSide.html">CIUpper</a></span>(alpha = <span class="fl">0.05</span>, <span class="kw">Z</span>[<span class="fl">1</span>], size = <span class="kw">n</span>, b = <span class="kw">b</span>, q = <span class="kw">q</span>)
 <span class="co">#&gt; [1] 0.77</span>
 </pre></div>
-<p>The upper and lower CI for <span class="math inline">\(\small \theta\)</span> at level <span class="math inline">\(\small \alpha=0.05\)</span> given the first observation of Z is <span class="math inline">\(\small(0.45,1)\)</span> and <span class="math inline">\(\small (0, 0.76)\)</span>, respectively. Similarly, we obtain the lower bounds of the one-sided confidence intervals from the first 10 observations from the data:</p>
+<p>The upper and lower CI for <span class="math inline">\(\small \theta\)</span> at level <span class="math inline">\(\small \alpha=0.05\)</span> given the first observation of Z is <span class="math inline">\(\small(0.46,1)\)</span> and <span class="math inline">\(\small (0, 0.77)\)</span>, respectively. Similarly, we obtain the lower bounds of the one-sided confidence intervals from the first 10 observations from the data:</p>
 <table class="table"><tbody>
 <tr class="odd">
 <td align="left">Z</td>
@@ -418,7 +419,7 @@
 <div id="asymptotically-unbiased-two-sided-confidence-intervals" class="section level3">
 <h3 class="hasAnchor">
 <a href="#asymptotically-unbiased-two-sided-confidence-intervals" class="anchor"></a>5.2. Asymptotically Unbiased Two-sided Confidence Intervals</h3>
-<p><code>CINearlyUnbiased()</code> computes the asymptotically unbiased two-sided confidence interval for <span class="math inline">\(\small \theta\)</span> with specified level of <span class="math inline">\(\small \alpha\)</span>. This confidence interval is typically more accurate than the simple two-sided confidence interval. For example, to calculate the two-sided confidence interval of <span class="math inline">\(\small \theta\)</span> of the first observation in Z:</p>
+<p><code><a href="../reference/CITwoSide.html">CITwoSide()</a></code> computes the asymptotically unbiased two-sided confidence interval for <span class="math inline">\(\small \theta\)</span> with specified level of <span class="math inline">\(\small \alpha\)</span>. This confidence interval is typically more accurate than the simple two-sided confidence interval. For example, to calculate the two-sided confidence interval of <span class="math inline">\(\small \theta\)</span> of the first observation in Z:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit">
 <span class="fu"><a href="../reference/CITwoSide.html">CITwoSide</a></span>(alpha = <span class="fl">0.05</span>, <span class="kw">Z</span>[<span class="fl">1</span>], size = <span class="kw">n</span>, b = <span class="kw">b</span>, q = <span class="kw">q</span>)
 <span class="co">#&gt; [1] 0.43 0.79</span>
