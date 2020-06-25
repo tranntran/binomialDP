@@ -18,11 +18,13 @@ navbar:
       href: reference/index.html
     - text: "News"
       href: news/index.html
-    - text: "Google"
-      href: google94f378e740b19df0.html
+
   right:
    - icon: fa-github
      href: https://github.com/ttran2401/binomialDP
+   - icon: fa-google
+     href: google94f378e740b19df0.html
+
 
 authors:
   Jordan Awan:
